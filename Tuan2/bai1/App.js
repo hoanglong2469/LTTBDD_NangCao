@@ -1,6 +1,13 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import Constants from 'expo-constants';
+
+// You can import from local files
+import AssetExample from './components/AssetExample';
+
+// or any pure javascript modules available in npm
+import { Card } from 'react-native-paper';
 
 export default function App() {
   const [input, setInput] = useState('')
@@ -18,14 +25,15 @@ export default function App() {
             ></TextInput>
             <Button style={styles.button}
                 onPress={onPressLearnMore}
-                title="Learn More"
+                title="Show"
                 color="#841584"
                 accessibilityLabel="Learn more about this purple button"
             />
             <Text>{settext}</Text>
         </View>
     );
-}  
+  
+}
 
 const styles = StyleSheet.create({
     container: {
