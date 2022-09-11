@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const pA = document.createElement("p");
+        pA.innerText = "Nhap a: ";
+        var inputA = document.createElement("INPUT");
+        inputA.setAttribute("type", "number");
+
+        const pB = document.createElement("p");
+        pB.innerText = "Nhap b: ";
+        var inputB = document.createElement("INPUT");
+        inputB.setAttribute("type", "number");
+
+        var output = document.createElement("INPUT");
+        output.setAttribute("type", "text");
+        output.setAttribute("disabled",true);
+
+
+        const button = document.createElement('button')
+        button.innerText = 'Tinh tong'
+        button.addEventListener("click",()=>{
+           output.value = Number(inputA.value) + Number(inputB.value);
+        });
+        button.style.display = "block";
+        button.style.margin = "10px";
+
+        document.body.appendChild(pA);
+        document.body.appendChild(inputA);
+        document.body.appendChild(pB);
+        document.body.appendChild(inputB);
+        document.body.appendChild(button);
+        document.body.appendChild(output);
+
+    </script>
+</body>
+
+</html>
