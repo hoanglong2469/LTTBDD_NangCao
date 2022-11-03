@@ -1,104 +1,43 @@
-import React, { useRef } from "react";
-import { Animated, Text, View, StyleSheet, Button, SafeAreaView, TouchableOpacity } from "react-native";
+import * as React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./components/Home";
+import Bai1 from "./components/Bai1";
+import Bai2 from "./components/Bai2";
+import Bai3 from "./components/Bai3";
+import Bai4 from "./components/Bai4";
 
-const App = () => {
-  // fadeAnim will be used as the value for opacity. Initial Value: 0
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+const Stack = createNativeStackNavigator();
 
-  const fadeIn = () => {
-    // Will change fadeAnim value to 1 in 5 seconds
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 5000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const fadeOut = () => {
-    // Will change fadeAnim value to 0 in 3 seconds
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 5000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const moveBall = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-  const backBall = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-  const xVal = fadeAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 1],
-  });
-
-  const yVal = fadeAnim.interpolate({
-    inputRange: [350, 350],
-    outputRange: [0, 1],
-  });
-
-  const animStyle = {
-    transform: [
-      {
-        translateX: xVal,
-        translateY: yVal,
-      },
-    ],
-  };
+export default function App() {
 
   return (
-    <SafeAreaView style={styles.container}>
-      
-      <Animated.View
-        style={[
-          styles.fadingContainer,
-          {
-            // Bind opacity to animated value
-            opacity: fadeAnim
-          }
-        ]}
-      >
-        <Text style={styles.fadingText}>Welcome to Animation React Native</Text>
-      </Animated.View>
-      <View style={styles.buttonRow}>
-        <Button title="Text In View" onPress={fadeIn} />
-        <Button title="Text Out View" onPress={fadeOut} />
-        <Button title="Top To Bottom" onPress={moveBall} />
-        <Button title="Bottom To Top" onPress={backBall} />
-      
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={Home}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Bai1" component={Bai1} />
+        <Stack.Screen name="Bai2" component={Bai2} />
+        <Stack.Screen name="Bai3" component={Bai3} />
+        <Stack.Screen name="Bai4" component={Bai4} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
   },
-  fadingContainer: {
-    padding: 20,
-    backgroundColor: "powderblue"
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
-  fadingText: {
-    fontSize: 22
-  },
-  buttonRow: {
-    flexBasis: 100,
-    justifyContent: "space-evenly",
-    marginVertical: 16
-  }
 });
-
-export default App;
