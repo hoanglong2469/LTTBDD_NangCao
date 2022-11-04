@@ -14,9 +14,6 @@ export default function Home(props) {
     const hanldPressBai3 = () => {
         navigation.navigate("Bai3");
     };
-    const hanldPressBai4 = () => {
-        navigation.navigate("Bai4");
-    };
 
     return (
         <View>
